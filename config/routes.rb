@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :articles, only: %i[show index]
       resources :tags, only: %i[show index]
       resources :statuses, only: %i[show index]
+      resources :categories, only: %i[show index]
     end
   end
 end
