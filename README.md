@@ -69,6 +69,18 @@ or
 rake test
 ```
 
+Console
+```
+rails c
+```
+
+Console with test
+```
+RAILS_ENV=test bin/rails db:fixtures:load
+rails c -e test
+```
+
+
 ## Generators
 Generate controlers. This is about, with about method
 ```shell
