@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_10_131851) do
+ActiveRecord::Schema.define(version: 2021_07_10_134208) do
 
   create_table "article_tags", force: :cascade do |t|
     t.integer "article_id", null: false
@@ -47,6 +47,16 @@ ActiveRecord::Schema.define(version: 2021_07_10_131851) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comment_votes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "comment_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["comment_id"], name: "index_comment_votes_on_comment_id"
+    t.index ["user_id", "comment_id"], name: "index_comment_votes_on_user_id_and_comment_id"
+    t.index ["user_id"], name: "index_comment_votes_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -95,6 +105,8 @@ ActiveRecord::Schema.define(version: 2021_07_10_131851) do
   add_foreign_key "article_votes", "articles"
   add_foreign_key "article_votes", "users"
   add_foreign_key "articles", "users"
+  add_foreign_key "comment_votes", "comments"
+  add_foreign_key "comment_votes", "users"
   add_foreign_key "comments", "articles"
   add_foreign_key "comments", "users"
   add_foreign_key "sessions", "users"
