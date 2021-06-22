@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       post 'notifications/notify_me'
       post 'notifications/notify_all'
 
-      resources :articles, only: %i[show index create update]
+      resources :articles
       resources :tags, only: %i[show index]
       resources :statuses, only: %i[show index]
       resources :categories, only: %i[show index]

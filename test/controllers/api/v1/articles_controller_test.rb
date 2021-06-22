@@ -70,12 +70,25 @@ module Api
         article['article']['body'] = 'Body changed'
 
         put api_v1_article_url(articles(:one).id, article), headers: { 'x-zabaldu-token' => 'MyString1' }
-        puts article.inspect
+
         get api_v1_article_url(article['article']['id'])
         generated = JSON.parse(@response.body)
 
         assert_equal generated['article']['title'], 'Changes'
         assert_equal generated['article']['body'], 'Body changed'
+      end
+
+      test 'should delete article' do
+        get api_v1_article_url(articles(:one).id)
+        article = JSON.parse(@response.body)
+        assert_not_nil article['article']
+
+        delete api_v1_article_url(articles(:one).id), headers: { 'x-zabaldu-token' => 'MyString1' }
+
+        get api_v1_article_url(article['article']['id'])
+        generated = JSON.parse(@response.body)
+
+        assert_equal generated['article']['status_id'], 2
       end
     end
   end

@@ -4,8 +4,8 @@ module Api
   module V1
     class ArticlesController < ApplicationController
       include CheckToken
-      prepend_before_action :check_token, only: [:create, :update, :delete]
-      before_action :has_permission, only: [:update, :delete]
+      prepend_before_action :check_token, only: [:create, :update, :destroy]
+      before_action :has_permission, only: [:update, :destroy]
 
       def index
         articles = Article.all()
@@ -33,7 +33,16 @@ module Api
         if @article.update(article_params)
           render json: @article
         else
-          render json: { error: true, msg: "Error creating Article: #{@article.errors.full_messages}" }.to_json
+          render json: { error: true, msg: "Error updating Article: #{@article.errors.full_messages}" }.to_json
+        end
+      end
+
+      def destroy
+        @article.status_id = 2
+        if @article.save
+          render json: @article
+        else
+          render json: { error: true, msg: "Error destroying Article: #{@article.errors.full_messages}" }.to_json
         end
       end
 
@@ -41,7 +50,7 @@ module Api
 
       def has_permission
         @article = Article.find(params[:id])
-        @article.user_id == article_params[:user_id]
+        @article.user_id == @user.id
       end
 
       def article_params

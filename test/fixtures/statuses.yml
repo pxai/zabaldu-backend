@@ -4,6 +4,10 @@ zero:
   id: 1
   code: MyString
 
+zero:
+  id: 2
+  code: deleted
+
 one:
   code: MyString
 
