@@ -1,0 +1,50 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+zero:
+  name: zero1
+  password: zero1
+  email: zero1
+  active: false
+  password_digest: <%= BCrypt::Password.create('zero1', cost: 5) %>
+
+one:
+  name: name1
+  password: pass1
+  email: email1
+  active: false
+  password_digest: <%= BCrypt::Password.create('pass1', cost: 5) %>
+
+two:
+  name: name2
+  password: pass2
+  email: email2
+  active: false
+  password_digest: <%= BCrypt::Password.create('pass2', cost: 5) %>
+
+four:
+  name: name4
+  password: pass4
+  email: email4
+  active: false
+  password_digest: <%= BCrypt::Password.create('pass4', cost: 5) %>
+
+five:
+  name: name5
+  password: pass5
+  email: email5
+  active: false
+  password_digest: <%= BCrypt::Password.create('pass5', cost: 5) %>
+
+six:
+  name: name6
+  password: pass6
+  email: email6
+  active: false
+  password_digest: <%= BCrypt::Password.create('pass5', cost: 5) %>
+
+seven:
+  name: name7
+  password: pass7
+  email: email7
+  active: false
+  password_digest: <%= BCrypt::Password.create('pass5', cost: 5) %>
