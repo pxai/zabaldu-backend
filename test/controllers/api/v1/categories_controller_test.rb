@@ -10,7 +10,7 @@ module Api
         assert_response :success
 
         data = JSON.parse(@response.body)
-        assert_equal data['categories'].length, 2
+        assert_equal data['categories'].length, 3
       end
 
       test 'should return one category' do
