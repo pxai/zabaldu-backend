@@ -80,6 +80,10 @@ RAILS_ENV=test bin/rails db:fixtures:load
 rails c -e test
 ```
 
+Delete DB test
+```
+bundle exec rake db:reset RAILS_ENV=test
+```
 
 ## Generators
 Generate controlers. This is about, with about method
