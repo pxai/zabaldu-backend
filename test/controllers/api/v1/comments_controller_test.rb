@@ -42,7 +42,7 @@ module Api
       end
 
       test 'should create comment with default status to 1' do
-        default_comment = {comment: { title: 'aaa', body: 'bbb', user_id: users(:one).id } }
+        default_comment = {comment: { body: 'bbb', article_id: articles(:one), user_id: users(:one).id } }
         post api_v1_comments_url(default_comment),
              headers: { 'x-zabaldu-token' => 'MyString1' }
         assert_response :success

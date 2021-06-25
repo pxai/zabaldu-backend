@@ -8,6 +8,10 @@ deleted:
   id: 2
   code: deleted
 
+published:
+  id: 3
+  code: published
+
 one:
   code: MyString
 
