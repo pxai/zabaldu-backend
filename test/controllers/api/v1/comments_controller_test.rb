@@ -41,7 +41,7 @@ module Api
         assert_equal generated['comment'], comment
       end
 
-      test 'should create comment with default status to 1' do
+      test 'should create comment with default status to 3' do
         default_comment = {comment: { body: 'bbb', article_id: articles(:one), user_id: users(:one).id } }
         post api_v1_comments_url(default_comment),
              headers: { 'x-zabaldu-token' => 'MyString1' }
@@ -49,24 +49,13 @@ module Api
 
         comment = JSON.parse(@response.body)
 
-        assert_equal comment['status_id'], 1
-      end
-
-      test 'should create comment with default category to 1' do
-        default_comment = {comment: { title: 'aaa', body: 'bbb', user_id: users(:one).id } }
-        post api_v1_comments_url(default_comment),
-             headers: { 'x-zabaldu-token' => 'MyString1' }
-        assert_response :success
-
-        comment = JSON.parse(@response.body)
-
-        assert_equal comment['category_id'], 1
+        assert_equal comment['status_id'], 3
       end
 
       test 'should update comment' do
         get api_v1_comment_url(comments(:one).id)
         comment = JSON.parse(@response.body)
-        comment['comment']['title'] = 'Changes'
+
         comment['comment']['body'] = 'Body changed'
 
         put api_v1_comment_url(comments(:one).id, comment), headers: { 'x-zabaldu-token' => 'MyString1' }
@@ -74,7 +63,6 @@ module Api
         get api_v1_comment_url(comment['comment']['id'])
         generated = JSON.parse(@response.body)
 
-        assert_equal generated['comment']['title'], 'Changes'
         assert_equal generated['comment']['body'], 'Body changed'
       end
 
