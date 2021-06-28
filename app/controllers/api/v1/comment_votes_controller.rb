@@ -14,7 +14,7 @@ module Api
         if @comment_vote.save
           render json: @comment_vote
         else
-          render json: { error: true, msg: "Error creating vote: #{@comment_vote.errors.full_messages}" }.to_json
+          render json: { error: true, msg: "Error creating Comment vote: #{@comment_vote.errors.full_messages}" }.to_json
         end
       end
 
@@ -22,7 +22,7 @@ module Api
         if @comment_vote.destroy
           render json: @comment_vote
         else
-          render json: { error: true, msg: "Error destroying Comment: #{@comment_vote.errors.full_messages}" }.to_json
+          render json: { error: true, msg: "Error destroying Comment vote: #{@comment_vote.errors.full_messages}" }.to_json
         end
       end
 
