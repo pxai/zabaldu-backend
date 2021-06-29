@@ -13,6 +13,12 @@ module Api
         render json: { articles: articles }
       end
 
+      def search
+        articles = Article.where("title like ? or body like ?", "%#{params[:term]}%", "%#{params[:term]}%")
+
+        render json: { articles: articles }
+      end
+
       def show
         article = Article.find(params[:id])
 

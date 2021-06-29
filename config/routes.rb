@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       post 'notifications/notify_all'
 
       resources :articles
+      post 'articles/search' => 'articles#search'
       resources :comments
       post 'comments/vote' => 'comment_votes#vote'
       post 'articles/vote' => 'article_votes#vote'

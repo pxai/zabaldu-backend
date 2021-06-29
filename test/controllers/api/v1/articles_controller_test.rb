@@ -90,6 +90,18 @@ module Api
 
         assert_equal generated['article']['status_id'], 2
       end
+
+      test 'should search for article' do
+        post api_v1_articles_search_url({ term: "MyString" })
+        articles = JSON.parse(@response.body)
+
+        assert_equal articles['articles'].length, 2
+
+        post api_v1_articles_search_url({ term: "xxx" })
+        articles = JSON.parse(@response.body)
+
+        assert_equal articles['articles'].length, 0
+      end
     end
   end
 end
