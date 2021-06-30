@@ -13,6 +13,20 @@ module Api
         assert_equal data['articles'].length, 2
       end
 
+      test 'should return all articles paginated' do
+        get api_v1_articles_url({page: 0})
+        assert_response :success
+
+        data = JSON.parse(@response.body)
+        assert_equal data['articles'].length, 2
+
+        get api_v1_articles_url({page: 10})
+        assert_response :success
+
+        data = JSON.parse(@response.body)
+        assert_equal data['articles'].length, 0
+      end
+
       test 'should return one article' do
         get api_v1_articles_url
         assert_response :success

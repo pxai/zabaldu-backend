@@ -4,17 +4,18 @@ module Api
   module V1
     class ArticlesController < ApplicationController
       include CheckToken
+      include Pagination
       prepend_before_action :check_token, only: [:create, :update, :destroy]
       before_action :has_permission, only: [:update, :destroy]
 
       def index
-        articles = Article.all()
+        articles = Article.limit(page_size).offset(set_offset * page_size) 
 
         render json: { articles: articles }
       end
 
       def search
-        articles = Article.where("title like ? or body like ?", "%#{params[:term]}%", "%#{params[:term]}%")
+        articles = Article.where("title like ? or body like ?", "%#{params[:term]}%", "%#{params[:term]}%").limit(page_size).offset(set_offset * page_size) 
 
         render json: { articles: articles }
       end
