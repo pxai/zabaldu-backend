@@ -4,11 +4,12 @@ module Api
   module V1
     class CommentsController < ApplicationController
       include CheckToken
+      include Pagination
       prepend_before_action :check_token, only: [:create, :update, :destroy]
       before_action :has_permission, only: [:update, :destroy]
 
       def index
-        comments = Comment.all()
+        comments = Comment.limit(page_size).offset(set_offset * page_size)
 
         render json: { comments: comments }
       end

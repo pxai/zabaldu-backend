@@ -13,6 +13,20 @@ module Api
         assert_equal data['comments'].length, 2
       end
 
+      test 'should return all comments paginated' do
+        get api_v1_comments_url({page: 0})
+        assert_response :success
+
+        data = JSON.parse(@response.body)
+        assert_equal data['comments'].length, 2
+
+        get api_v1_comments_url({page: 10})
+        assert_response :success
+
+        data = JSON.parse(@response.body)
+        assert_equal data['comments'].length, 0
+      end
+
       test 'should return one comment' do
         get api_v1_comments_url
         assert_response :success
