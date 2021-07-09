@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       post 'notifications/remove'
       post 'notifications/notify_me'
       post 'notifications/notify_all'
+
+      resources :articles, only: %i[show index]
     end
   end
 end

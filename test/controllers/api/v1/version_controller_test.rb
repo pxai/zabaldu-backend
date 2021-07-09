@@ -22,7 +22,7 @@ module Api
       def assert_version_data(data)
         assert_equal data['name'], 'zabaldu'
         assert_equal data['env'], 'test'
-        assert_equal data['build'].length, 4
+        assert_equal data['build'].length, 40
       end
     end
   end
